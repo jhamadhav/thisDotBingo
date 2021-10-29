@@ -1,8 +1,87 @@
- <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Orientation  -->
+  <meta name="screen-orientation" content="portrait">
+
+  <!-- Manifest.json  -->
+  <meta property="og:title" content="Bingo by thisDot">
+  <meta property="og:description" content="Play Bingo with anyone, anywhere, on any device.">
+  <meta property="og:image" content="/assets/logo.png">
+  <meta property="og:url" content="thisDotBingo.co">
+
+  <!-- Main Link Tags  -->
+  <link href="/icons/favicon-16x16.png" rel="icon" type="/assets/logo.png" sizes="16x16">
+  <link href="/icons/favicon-32x32.png" rel="icon" type="/assets/logo.png" sizes="32x32">
+
+  <!-- iOS  -->
+  <link href="/assets/logo.png" rel="apple-touch-icon" sizes="152x152">
+
+  <!-- Android  -->
+  <link href="/assets/logo.png" rel="icon" sizes="192x192">
+  <link href="/assets/logo.png" rel="icon" sizes="512x512">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Delius&family=Montserrat&family=Roboto&display=swap"
+    rel="stylesheet">
+
+  <title>Bingo !!</title>
+
+  <link rel="stylesheet" href="./styles/main.min.css">
+</head>
+
 <body>
+  <!-- nav bar -->
+  <nav>
+    <div class="logo">
+      <a href="https://thisDotBingo.co">
+        <img src="./assets/logo.png" alt="site logo">
+      </a>
+    </div>
+    <div class="site-name">
+      <a href="https://thisDotBingo.co">
+        thisDot <b style="color:gray">Bingo</b>
+      </a>
+    </div>
+    <div class="discord-link nav-link">
+      <a href="https://discord.com/api/oauth2/authorize?client_id=903305647070797894&permissions=534723947584&scope=bot"
+        target="_blank">Discord</a>
+    </div>
+    <div class="about-link nav-link">
+      <a href="./about.html" target="_blank">About</a>
+    </div>
+  </nav>
 
-  <h1>Hi this is thisDotBingo</h1>
+  <!-- main page -->
+  <main>
+    <div class="left-side">
+      <div class="heading">
+        <img src="./assets/game-controller.png" alt="controller image">
+        <div class="main-text">Bingo</div>
+      </div>
+      <div class="tagline">Play with anyone, anywhere, on any device.</div>
 
+      <div class="inputs">
+        <div class="join-room">
+          <input type="text" id="join-room-input" placeholder="Enter room code" autofocus="true">
+          <button>Join</button>
+        </div>
+        <div class="or">OR</div>
+        <div class="create-room">
+          <button>Create room</button>
+        </div>
+      </div>
+    </div>
+    <div class="right-side">
+      <img src="./assets/main-image.png" alt="main image">
+      <div class="bg-circle"></div>
+    </div>
+  </main>
 </body>
-</html> 
+
+</html>
