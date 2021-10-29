@@ -1,7 +1,10 @@
 $image-width:500px;
 $blur-bubble:300px;
+$blur-bubble-mobile:200px;
 $blur-bubble-color:#34E89E;
 $btn-color:#00B0FF;
+$mobile:957px;
+$image-width-mobile:55%;
 
 main {
     margin: auto;
@@ -13,6 +16,10 @@ main {
     padding: 10px;
     margin-top: 40px;
     height: 100%;
+
+    @media (max-width: $mobile) {
+        flex-direction: column-reverse;
+    }
 }
 
 .left-side {
@@ -20,6 +27,7 @@ main {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    width: 100%;
 
     .heading {
         display: flex;
@@ -28,6 +36,11 @@ main {
         align-items: center;
         font-family: 'Roboto', sans-serif;
         font-size: 32px;
+        order: 1;
+
+        @media (max-width: $mobile) {
+            margin-top: 40px;
+        }
 
         img {
             width: 60px;
@@ -36,6 +49,10 @@ main {
         .main-text {
             font-weight: bold;
             margin-left: 10px;
+
+            @media (max-width: $mobile) {
+                font-size: 26px;
+            }
         }
     }
 
@@ -43,6 +60,12 @@ main {
         font-size: 20px;
         width: 90%;
         margin-top: 10px;
+        order: 2;
+        text-align: center;
+
+        @media (max-width: $mobile) {
+            font-size: 18px;
+        }
     }
 
     .inputs {
@@ -51,6 +74,18 @@ main {
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
+        order: 3;
+
+        @media (max-width: $mobile) {
+            margin-top: 40px;
+        }
+
+        .join-room {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
 
         #join-room-input {
             height: 100%;
@@ -61,6 +96,12 @@ main {
             padding-left: 8px;
             font-size: 20px;
             font-family: 'Roboto', sans-serif;
+            background-color: transparent;
+            margin-right: 4px;
+
+            @media (max-width: $mobile) {
+                width: 80%;
+            }
         }
 
         .or {
@@ -95,8 +136,18 @@ main {
 }
 
 .right-side {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
     img {
         width: $image-width;
+
+        @media (max-width: $mobile) {
+            width: $image-width-mobile;
+        }
     }
 
     .bg-circle {
@@ -110,5 +161,13 @@ main {
         z-index: -1;
         top: 100px;
         right: 200px;
+
+        @media (max-width: $mobile) {
+            width: $blur-bubble-mobile;
+            height: $blur-bubble-mobile;
+            margin: auto;
+            left: 0;
+            right: 0;
+        }
     }
 }

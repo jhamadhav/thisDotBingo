@@ -1,5 +1,7 @@
 $logo-size: 50px;
 $nav-font-size: 20px;
+$mobile:957px;
+$nav-font-size-mobile: 18px;
 
 nav {
     width: 100%;
@@ -11,6 +13,11 @@ nav {
     padding-left: 32px;
     font-family: 'Roboto', sans-serif;
     font-size: $nav-font-size;
+
+    @media (max-width: $mobile) {
+        font-size: $nav-font-size-mobile;
+        padding: 8px;
+    }
 
     a {
         text-decoration: none;
