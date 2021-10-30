@@ -123,6 +123,37 @@ document.getElementById("play").onclick = async () => {
     rooms.doc(roomID).onSnapshot((doc) => {
         let updatedData = doc.data()
 
+        // announce new player
+        try {
+
+            if (updatedData.playerCount > currentRoomData.playerCount) {
+                let playerName = updatedData.playerData[updatedData.playerCount - 1].name
+                console.log(playerName);
+                popMsg(`${playerName} joined`)
+            }
+        } catch (e) {
+            console.log(e);
+        }
+
+        // announce number
+        try {
+            if (updatedData.selectedNum.length > currentRoomData.selectedNum.length) {
+                let index;
+                if (updatedData.currentPlayer == 1) {
+                    index = updatedData.playerCount - 1;
+                } else {
+                    index = updatedData.currentPlayer - 2
+                }
+                console.log(index);
+                let playerName = updatedData.playerData[index].name
+                console.log(playerName);
+                popMsg(`${playerName} choose ${updatedData.selectedNum[updatedData.selectedNum.length - 1]}`)
+            }
+        } catch (e) {
+            console.log(e);
+        }
+
+
         currentRoomData = updatedData
         let numArr = currentRoomData.selectedNum
         for (let i = 0; i < numArr.length; i++) {
@@ -170,6 +201,7 @@ const updateDB = (num = 5) => {
     selectedNum.push(num)
 
     playerData[myPlayerId - 1] = {
+        "name": myPlayerName,
         "board": myGameBoard,
         "selection": myGameBoardSelection
     }
