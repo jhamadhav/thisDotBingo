@@ -29,12 +29,29 @@ let myGameBoard, myGameBoardSelection, myPlayerId
 let currentRoomData
 const cells = document.getElementsByClassName("game-cell")
 
-window.onload = async () => {
+
+document.getElementsByClassName("link-copy-btn")[0].onclick = () => {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+        console.log('Game link copied !!');
+    }, (err) => {
+        console.error('Async: Could not copy text: ', err);
+    });
+}
+
+window.onload = () => {
 
     // get room id from url
     let url_string = window.location.href
     let url = new URL(url_string);
     roomID = url.searchParams.get("room");
+
+    document.getElementById("link").value = url_string
+}
+
+let myPlayerName = "Anonymous"
+document.getElementById("play").onclick = async () => {
+    document.getElementsByClassName("name-link-popup")[0].style.display = "none"
+    myPlayerName = document.getElementById("name").value
 
 
     if (roomID == null) {
@@ -66,6 +83,7 @@ window.onload = async () => {
         myPlayerId = playerCount
 
         playerData.push({
+            "name": myPlayerName,
             "board": myGameBoard,
             "selection": myGameBoardSelection
         })
@@ -85,6 +103,7 @@ window.onload = async () => {
         myPlayerId = 1
 
         let firstPlayerData = {
+            "name": myPlayerName,
             selectedNum: [],
             playerCount: 1,
             currentPlayer: 1,

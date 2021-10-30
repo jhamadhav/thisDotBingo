@@ -68,71 +68,73 @@ main {
         }
     }
 
-    .inputs {
-        margin-top: 100px;
+
+}
+
+.inputs {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    order: 3;
+
+    @media (max-width: $mobile) {
+        margin-top: 40px;
+    }
+
+    .join-room {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: space-around;
         align-items: center;
-        order: 3;
+    }
+
+    #join-room-input {
+        height: 100%;
+        outline: none;
+        border: none;
+        border-bottom: 2px solid gray;
+        padding: 4px;
+        padding-left: 8px;
+        font-size: 20px;
+        font-family: 'Roboto', sans-serif;
+        background-color: transparent;
+        margin-right: 4px;
 
         @media (max-width: $mobile) {
-            margin-top: 40px;
+            width: 80%;
         }
-
-        .join-room {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: center;
-        }
-
-        #join-room-input {
-            height: 100%;
-            outline: none;
-            border: none;
-            border-bottom: 2px solid gray;
-            padding: 4px;
-            padding-left: 8px;
-            font-size: 20px;
-            font-family: 'Roboto', sans-serif;
-            background-color: transparent;
-            margin-right: 4px;
-
-            @media (max-width: $mobile) {
-                width: 80%;
-            }
-        }
-
-        .or {
-            margin: 20px;
-            font-family: 'Roboto', sans-serif;
-            font-style: italic;
-        }
-
-        button {
-            outline: none;
-            border: none;
-            border-radius: 4px;
-            background-color: $btn-color;
-            padding: 10px 20px;
-            color: #fff;
-            text-align: center;
-            align-items: center;
-            font-family: 'Roboto', sans-serif;
-            font-size: 20px;
-            cursor: pointer;
-
-            &:hover {
-                transform: scale(0.95);
-            }
-
-            &:active {
-                transform: scale(0.9);
-            }
-        }
-
     }
+
+    .or {
+        margin: 20px;
+        font-family: 'Roboto', sans-serif;
+        font-style: italic;
+    }
+
+    button {
+        outline: none;
+        border: none;
+        border-radius: 4px;
+        background-color: $btn-color;
+        padding: 10px 20px;
+        color: #fff;
+        text-align: center;
+        align-items: center;
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(0.95);
+        }
+
+        &:active {
+            transform: scale(0.9);
+        }
+    }
+
 }
 
 .right-side {

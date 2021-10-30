@@ -5,7 +5,7 @@
 
     font-family: 'Roboto', sans-serif;
 */
-@import "nav", "board";
+@import "nav", "board", "name-popup";
 
 * {
     margin: 0;
@@ -16,5 +16,7 @@
 body {
     background-color: #efefef;
     font-family: 'Montserrat', sans-serif;
-
+    position: fixed;
+    width: 100%;
+    height: 100%;
 }
