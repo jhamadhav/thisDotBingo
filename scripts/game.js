@@ -46,10 +46,19 @@ window.onload = () => {
     roomID = url.searchParams.get("room");
 
     document.getElementById("link").value = url_string
+    document.getElementById("name").addEventListener("keydown", async (e) => {
+        if (e.key === "Enter") {
+            await beginGame();
+        }
+    });
 }
 
 let myPlayerName = "Anonymous"
 document.getElementById("play").onclick = async () => {
+    await beginGame()
+}
+
+const beginGame = async () => {
     document.getElementsByClassName("name-link-popup")[0].style.display = "none"
     myPlayerName = document.getElementById("name").value
     myPlayerName = myPlayerName.trim()
@@ -187,7 +196,7 @@ document.getElementById("play").onclick = async () => {
     for (let i = 0; i < cells.length; i++) {
         cells[i].innerText = myGameBoard[i]
         cells[i].addEventListener('click', () => {
-            if (myPlayerId == currentRoomData.currentPlayer && myGameBoardSelection[i] == 0) {
+            if (myPlayerId == currentRoomData.currentPlayer && myGameBoardSelection[i] == 0 && !currentRoomData.won) {
                 updateCell(i)
                 updateDB(cells[i].innerText)
             }
