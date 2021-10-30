@@ -10,11 +10,71 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="./scripts/game.js" defer></script>
+    <link rel="stylesheet" href="./styles/game.min.css">
 </head>
 
 <body>
-    <input type="text" id="text-inp" placeholder="add message" autofocus="true">
-    <button id="send-message">send</button>
+    <!-- nav bar -->
+    <nav>
+        <div class="logo">
+            <a href="https://thisDotBingo.co">
+                <img src="./assets/logo.png" alt="site logo">
+            </a>
+        </div>
+        <div class="site-name">
+            <a href="https://thisDotBingo.co">
+                thisDot <b style="color:gray">Bingo</b>
+            </a>
+        </div>
+        <div class="discord-link nav-link">
+            <a href="https://discord.com/api/oauth2/authorize?client_id=903305647070797894&permissions=534723947584&scope=bot"
+                target="_blank">Discord</a>
+        </div>
+        <div class="about-link nav-link">
+            <a href="./about.html" target="_blank">About</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="game-board">
+            <div class="game-row">
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+            </div>
+            <div class="game-row">
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+            </div>
+            <div class="game-row">
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+            </div>
+            <div class="game-row">
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+            </div>
+            <div class="game-row">
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+            </div>
+        </div>
+    </main>
+
 </body>
 
 </html>

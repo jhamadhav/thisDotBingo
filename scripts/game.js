@@ -23,9 +23,14 @@ const generateBingoArray = (num, maxNum = 25) => {
     return arr
 }
 
+const maxRoom = 500
 let roomID, roomData
 let myGameBoard, myGameBoardSelection, myPlayerId
+let currentRoomData
+const cells = document.getElementsByClassName("game-cell")
+
 window.onload = async () => {
+
     // get room id from url
     let url_string = window.location.href
     let url = new URL(url_string);
@@ -34,6 +39,7 @@ window.onload = async () => {
 
     if (roomID == null) {
         window.location = "https://thisDotBingo.co"
+        return
     }
 
     // if user if a first time user
@@ -44,7 +50,7 @@ window.onload = async () => {
         currentRoomData = roomData.data()
 
         //if room is full reject 
-        if (currentRoomData.playerCount >= 5) {
+        if (currentRoomData.playerCount >= maxRoom) {
             console.log("Sorry room is full\nPlay another time");
 
             // do something
@@ -53,7 +59,6 @@ window.onload = async () => {
 
         // add new player data to the DB
         let playerCount = currentRoomData.playerCount + 1
-        console.log(playerCount);
         let playerData = currentRoomData.playerData
 
         myGameBoard = generateBingoArray(25)
@@ -80,6 +85,7 @@ window.onload = async () => {
         myPlayerId = 1
 
         let firstPlayerData = {
+            selectedNum: [],
             playerCount: 1,
             currentPlayer: 1,
             playerData: [{
@@ -88,14 +94,71 @@ window.onload = async () => {
             }]
         }
         rooms.doc(roomID).set(firstPlayerData)
+        currentRoomData = await rooms.doc(roomID).get()
+        currentRoomData = currentRoomData.data()
         console.log("Welcome to room: " + roomID);
         console.log("Your playerID: " + myPlayerId);
         console.log("Your bingo board: " + myGameBoard);
     }
 
+    rooms.doc(roomID).onSnapshot((doc) => {
+        let updatedData = doc.data()
+
+        currentRoomData = updatedData
+        let numArr = currentRoomData.selectedNum
+        for (let i = 0; i < numArr.length; i++) {
+            let num = parseInt(numArr[i])
+            let index = myGameBoard.indexOf(num)
+            updateCell(index)
+        }
+        updateCursor()
+
+    });
+
+    // load game stuff
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].innerText = myGameBoard[i]
+        cells[i].addEventListener('click', () => {
+            if (myPlayerId == currentRoomData.currentPlayer && myGameBoardSelection[i] == 0) {
+                updateCell(i)
+                updateDB(cells[i].innerText)
+            }
+
+        })
+    }
+}
+const updateCell = (i) => {
+    myGameBoardSelection[i] = 1;
+    cells[i].style.background = "red"
+}
+const updateCursor = () => {
+    let val = "pointer"
+    if (myPlayerId != currentRoomData.currentPlayer) {
+        val = "no-drop"
+    }
+
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].style.cursor = val
+    };
 }
 
-//when a user clicks the send message button 
-document.getElementById("send-message").addEventListener("click", function (event) {
-    console.log("send message");
-});
+const updateDB = (num = 5) => {
+    let playerData = currentRoomData.playerData
+    let currentPlayer = currentRoomData.currentPlayer
+    currentPlayer = (currentPlayer + 1) % (currentRoomData.playerCount + 1)
+    currentPlayer = (currentPlayer == 0) ? currentPlayer + 1 : currentPlayer
+    selectedNum = currentRoomData.selectedNum
+    selectedNum.push(num)
+
+    playerData[myPlayerId - 1] = {
+        "board": myGameBoard,
+        "selection": myGameBoardSelection
+    }
+
+    let data = {
+        currentPlayer,
+        playerData,
+        selectedNum
+    }
+    rooms.doc(roomID).update(data)
+}
