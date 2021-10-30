@@ -21,6 +21,11 @@ body {
     height: 100%;
 }
 
+.win-pop {
+    z-index: -10;
+    visibility: hidden;
+}
+
 .player-data {
     width: 100%;
     display: flex;

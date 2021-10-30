@@ -13,6 +13,11 @@ if (!firebase.apps.length) {
 const firestore = firebase.firestore();
 const rooms = firestore.collection('rooms')
 
+// 
+const sendToHome = () => {
+    window.location = "https://thisDotBingo.co"
+}
+
 // generate bingo board
 const generateBingoArray = (num, maxNum = 25) => {
     let arr = [];
@@ -172,6 +177,9 @@ const beginGame = async () => {
         // check if someone won
         if (updatedData.won) {
             popMsg(`${updatedData.won} won !!!`)
+            document.getElementsByClassName("win-pop")[0].style.zIndex = 100
+            document.getElementsByClassName("win-pop")[0].style.visibility = "visible"
+            document.getElementById("winner").innerText = updatedData.won
         }
 
 
