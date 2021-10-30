@@ -153,6 +153,11 @@ document.getElementById("play").onclick = async () => {
             console.log(e);
         }
 
+        // check if someone won
+        if (updatedData.won) {
+            popMsg(`${updatedData.won} won !!!`)
+        }
+
 
         currentRoomData = updatedData
         let numArr = currentRoomData.selectedNum
@@ -162,6 +167,12 @@ document.getElementById("play").onclick = async () => {
             updateCell(index)
         }
         updateCursor()
+
+        // check if this player won
+        let iWin = checkMyBingo()
+        if (iWin) {
+            rooms.doc(roomID).update({ "won": myPlayerName })
+        }
 
     });
 
@@ -222,4 +233,52 @@ const popMsg = (msg = "hello") => {
     popWindow.addEventListener("animationend", () => {
         popWindow.classList.remove("pop-animation")
     })
+}
+
+const checkMyBingo = () => {
+    let arr = myGameBoardSelection
+    let flag = 0;
+
+    for (let i = 0; i < 5; i++) {
+        let sum = 0
+        for (let j = 0; j < 5; j++) {
+            index = i * 5 + j
+            sum += arr[index]
+        }
+        if (sum == 5) {
+            flag = 1
+        }
+    }
+    for (let i = 0; i < 5; i++) {
+        let sum = 0
+        for (let j = 0; j < 5; j++) {
+            index = j * 5 + i
+            sum += arr[index]
+        }
+        if (sum == 5) {
+            flag = 1
+        }
+    }
+
+    let sum = 0
+    for (let i = 0; i < 5; i++) {
+        index = i * 5 + i
+        sum += arr[index]
+    }
+    if (sum == 5) {
+        flag = 1
+    }
+
+    sum = 0
+    for (let i = 0, j = 4; i < 5; i++, j--) {
+        index = i * 5 + j
+        sum += arr[index]
+        // console.log(`i: ${i},j: ${i},index: ${index}`);
+        // console.log(sum);
+    }
+    if (sum == 5) {
+        flag = 1
+    }
+
+    return flag
 }
