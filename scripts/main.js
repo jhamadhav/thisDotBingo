@@ -1,4 +1,5 @@
-const siteUrl = "https://thisDotBingo.co/game?room="
+const siteUrl = `${window.location.href}game.html?room=`
+
 const createRoom = document.getElementById("create-room")
 createRoom.onclick = async () => {
 
@@ -17,7 +18,7 @@ const joinRoom = document.getElementById("join-room")
 joinRoom.onclick = () => {
     let inpId = document.getElementById("join-room-input").value
 
-    const regex = /(https:\/\/thisDotBingo\.co\/game\?room=)/g;
+    let regex = /(https:\/\/thisDotBingo\.co\/game\?room=)/g;
 
     let link = inpId
     if (regex.test(inpId) == false) {
