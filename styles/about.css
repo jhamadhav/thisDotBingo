@@ -1,0 +1,10 @@
+/* for the about us paragraph */
+.left-side .paragraph {
+    font-size: 25px;
+    width: 90%;
+    margin-top: 15px;
+    -webkit-box-ordinal-group: 3;
+    -ms-flex-order: 2;
+    order: 2;
+    text-align: left
+}
