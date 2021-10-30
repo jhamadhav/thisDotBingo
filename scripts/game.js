@@ -28,7 +28,7 @@ let roomID, roomData
 let myGameBoard, myGameBoardSelection, myPlayerId
 let currentRoomData
 const cells = document.getElementsByClassName("game-cell")
-
+const playerName = document.getElementById("current-player")
 
 document.getElementsByClassName("link-copy-btn")[0].onclick = () => {
     navigator.clipboard.writeText(window.location.href).then(() => {
@@ -46,12 +46,25 @@ window.onload = () => {
     roomID = url.searchParams.get("room");
 
     document.getElementById("link").value = url_string
+    document.getElementById("name").addEventListener("keydown", async (e) => {
+        if (e.key === "Enter") {
+            await beginGame();
+        }
+    });
 }
 
 let myPlayerName = "Anonymous"
 document.getElementById("play").onclick = async () => {
+    await beginGame()
+}
+
+const beginGame = async () => {
     document.getElementsByClassName("name-link-popup")[0].style.display = "none"
     myPlayerName = document.getElementById("name").value
+    myPlayerName = myPlayerName.trim()
+    if (myPlayerName.length == 0) {
+        myPlayerName = "Anonymous"
+    }
 
 
     if (roomID == null) {
@@ -83,9 +96,9 @@ document.getElementById("play").onclick = async () => {
         myPlayerId = playerCount
 
         playerData.push({
-            "name": myPlayerName,
-            "board": myGameBoard,
-            "selection": myGameBoardSelection
+            name: myPlayerName,
+            board: myGameBoard,
+            selection: myGameBoardSelection
         })
 
         let newPlayerData = {
@@ -103,13 +116,13 @@ document.getElementById("play").onclick = async () => {
         myPlayerId = 1
 
         let firstPlayerData = {
-            "name": myPlayerName,
             selectedNum: [],
             playerCount: 1,
             currentPlayer: 1,
             playerData: [{
-                "board": myGameBoard,
-                "selection": myGameBoardSelection
+                name: myPlayerName,
+                board: myGameBoard,
+                selection: myGameBoardSelection
             }]
         }
         rooms.doc(roomID).set(firstPlayerData)
@@ -153,6 +166,9 @@ document.getElementById("play").onclick = async () => {
             console.log(e);
         }
 
+        playerName.innerText = updatedData.playerData[updatedData.currentPlayer - 1].name
+        console.log(updatedData.playerData[updatedData.currentPlayer - 1]);
+
         // check if someone won
         if (updatedData.won) {
             popMsg(`${updatedData.won} won !!!`)
@@ -180,7 +196,7 @@ document.getElementById("play").onclick = async () => {
     for (let i = 0; i < cells.length; i++) {
         cells[i].innerText = myGameBoard[i]
         cells[i].addEventListener('click', () => {
-            if (myPlayerId == currentRoomData.currentPlayer && myGameBoardSelection[i] == 0) {
+            if (myPlayerId == currentRoomData.currentPlayer && myGameBoardSelection[i] == 0 && !currentRoomData.won) {
                 updateCell(i)
                 updateDB(cells[i].innerText)
             }

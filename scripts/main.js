@@ -18,7 +18,7 @@ const joinRoom = document.getElementById("join-room")
 joinRoom.onclick = () => {
     let inpId = document.getElementById("join-room-input").value
 
-    let regex = /(https:\/\/thisDotBingo\.co\/game\?room=)/g;
+    let regex = /(https:\/\/thisdotbingo\.co\/game.html\?room=)/g;
 
     let link = inpId
     if (regex.test(inpId) == false) {
