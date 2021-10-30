@@ -181,3 +181,13 @@ const updateDB = (num = 5) => {
     }
     rooms.doc(roomID).update(data)
 }
+
+const popMsg = (msg = "hello") => {
+    document.getElementsByClassName("msg-text")[0].innerText = msg
+    let popWindow = document.getElementsByClassName("msg-pop")[0]
+    popWindow.classList.add("pop-animation")
+
+    popWindow.addEventListener("animationend", () => {
+        popWindow.classList.remove("pop-animation")
+    })
+}
