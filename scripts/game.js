@@ -28,7 +28,7 @@ let roomID, roomData
 let myGameBoard, myGameBoardSelection, myPlayerId
 let currentRoomData
 const cells = document.getElementsByClassName("game-cell")
-
+const playerName = document.getElementById("current-player")
 
 document.getElementsByClassName("link-copy-btn")[0].onclick = () => {
     navigator.clipboard.writeText(window.location.href).then(() => {
@@ -52,6 +52,10 @@ let myPlayerName = "Anonymous"
 document.getElementById("play").onclick = async () => {
     document.getElementsByClassName("name-link-popup")[0].style.display = "none"
     myPlayerName = document.getElementById("name").value
+    myPlayerName = myPlayerName.trim()
+    if (myPlayerName.length == 0) {
+        myPlayerName = "Anonymous"
+    }
 
 
     if (roomID == null) {
@@ -83,9 +87,9 @@ document.getElementById("play").onclick = async () => {
         myPlayerId = playerCount
 
         playerData.push({
-            "name": myPlayerName,
-            "board": myGameBoard,
-            "selection": myGameBoardSelection
+            name: myPlayerName,
+            board: myGameBoard,
+            selection: myGameBoardSelection
         })
 
         let newPlayerData = {
@@ -103,13 +107,13 @@ document.getElementById("play").onclick = async () => {
         myPlayerId = 1
 
         let firstPlayerData = {
-            "name": myPlayerName,
             selectedNum: [],
             playerCount: 1,
             currentPlayer: 1,
             playerData: [{
-                "board": myGameBoard,
-                "selection": myGameBoardSelection
+                name: myPlayerName,
+                board: myGameBoard,
+                selection: myGameBoardSelection
             }]
         }
         rooms.doc(roomID).set(firstPlayerData)
@@ -152,6 +156,9 @@ document.getElementById("play").onclick = async () => {
         } catch (e) {
             console.log(e);
         }
+
+        playerName.innerText = updatedData.playerData[updatedData.currentPlayer - 1].name
+        console.log(updatedData.playerData[updatedData.currentPlayer - 1]);
 
         // check if someone won
         if (updatedData.won) {
