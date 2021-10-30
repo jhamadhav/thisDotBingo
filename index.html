@@ -31,8 +31,10 @@
     rel="stylesheet">
 
   <title>Bingo !!</title>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js" defer></script>
   <link rel="stylesheet" href="./styles/main.min.css">
+  <script src="./scripts/main.js" defer></script>
+
 </head>
 
 <body>
@@ -69,11 +71,11 @@
       <div class="inputs">
         <div class="join-room">
           <input type="text" id="join-room-input" placeholder="Enter room code" autofocus="true">
-          <button>Join</button>
+          <button id='join-room'>Join</button>
         </div>
         <div class="or">OR</div>
         <div class="create-room">
-          <button>Create room</button>
+          <button id="create-room">Create room</button>
         </div>
       </div>
     </div>

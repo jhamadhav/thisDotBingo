@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo | game</title>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="./scripts/game.js" defer></script>
+    <link rel="stylesheet" href="./styles/game.min.css">
+</head>
+
+<body>
+    <!-- nav bar -->
+    <nav>
+        <div class="logo">
+            <a href="https://thisDotBingo.co">
+                <img src="./assets/logo.png" alt="site logo">
+            </a>
+        </div>
+        <div class="site-name">
+            <a href="https://thisDotBingo.co">
+                thisDot <b style="color:gray">Bingo</b>
+            </a>
+        </div>
+        <div class="discord-link nav-link">
+            <a href="https://discord.com/api/oauth2/authorize?client_id=903305647070797894&permissions=534723947584&scope=bot"
+                target="_blank">Discord</a>
+        </div>
+        <div class="about-link nav-link">
+            <a href="./about.html" target="_blank">About</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="game-board">
+            <div class="game-row">
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+            </div>
+            <div class="game-row">
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+            </div>
+            <div class="game-row">
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+            </div>
+            <div class="game-row">
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+            </div>
+            <div class="game-row">
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+                <div class="game-cell">0</div>
+            </div>
+        </div>
+    </main>
+
+    <div class="name-link-popup">
+        <div class="name-div">
+            <input type="text" id="name" placeholder="Enter your name">
+            <button id="play">Play</button>
+        </div>
+        <div class="link-copy">
+            <input id="link" placeholder="link here" disabled="true"></input>
+            <button class="link-copy-btn">Copy</button>
+        </div>
+    </div>
+
+    <div class="msg-pop">
+        <div class="msg-text">Hello</div>
+    </div>
+</body>
+
+</html>
